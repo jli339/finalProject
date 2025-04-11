@@ -19,6 +19,7 @@ from django.urls import path
 from FinalProject import views
 
 urlpatterns = [
+    path('', views.login, name='login'),
     path('admin/', admin.site.urls),
     path('login/',views.login,name='login'),
     path('index/',views.index, name='index'),
