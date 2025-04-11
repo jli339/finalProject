@@ -1,0 +1,333 @@
+[
+  {
+    "model": "FinalProject.assignedtasks",
+    "pk": 15,
+    "fields": {
+      "operation_type": "",
+      "material_used": 2.4,
+      "processing_time": 28.0,
+      "energy_consumption": 9.1,
+      "machine_availability": 59.0,
+      "machine_id": "M004",
+      "time_budget": 180.0,
+      "time_risk": 152.0,
+      "exceeds_deadline": 0,
+      "priority_label": "Not_High",
+      "scheduled_start": "2025-04-11T09:29:00Z",
+      "deadline": "2025-04-11T12:29:00Z",
+      "priority_score": 0.4604
+    }
+  },
+  {
+    "model": "FinalProject.assignedtasks",
+    "pk": 16,
+    "fields": {
+      "operation_type": "",
+      "material_used": 5.2,
+      "processing_time": 72.0,
+      "energy_consumption": 32.3,
+      "machine_availability": 82.0,
+      "machine_id": "M003",
+      "time_budget": 57.0,
+      "time_risk": -15.0,
+      "exceeds_deadline": 1,
+      "priority_label": "High",
+      "scheduled_start": "2025-04-11T07:43:00Z",
+      "deadline": "2025-04-11T08:40:00Z",
+      "priority_score": 0.9169
+    }
+  },
+  {
+    "model": "FinalProject.assignedtasks",
+    "pk": 17,
+    "fields": {
+      "operation_type": "",
+      "material_used": 3.8,
+      "processing_time": 60.0,
+      "energy_consumption": 26.8,
+      "machine_availability": 77.0,
+      "machine_id": "M001",
+      "time_budget": 60.0,
+      "time_risk": 0.0,
+      "exceeds_deadline": 0,
+      "priority_label": "High",
+      "scheduled_start": "2025-04-11T08:05:00Z",
+      "deadline": "2025-04-11T09:05:00Z",
+      "priority_score": 0.8105
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 11,
+    "fields": {
+      "material_used": 4.5,
+      "processing_time": 45.0,
+      "energy_consumption": 17.8,
+      "machine_availability": 88.0,
+      "machine_id": "M001",
+      "time_budget": 180.0,
+      "time_risk": 3.0,
+      "exceeds_deadline": 0,
+      "priority_label": "Not_High",
+      "scheduled_start": "2025-04-11T08:00:00Z",
+      "deadline": "2025-04-11T11:00:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 12,
+    "fields": {
+      "material_used": 3.9,
+      "processing_time": 50.0,
+      "energy_consumption": 20.4,
+      "machine_availability": 76.0,
+      "machine_id": "M002",
+      "time_budget": 240.0,
+      "time_risk": 1.0,
+      "exceeds_deadline": 0,
+      "priority_label": "Not_High",
+      "scheduled_start": "2025-04-11T09:00:00Z",
+      "deadline": "2025-04-11T13:00:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 13,
+    "fields": {
+      "material_used": 6.1,
+      "processing_time": 70.0,
+      "energy_consumption": 28.5,
+      "machine_availability": 92.0,
+      "machine_id": "M003",
+      "time_budget": 300.0,
+      "time_risk": 5.0,
+      "exceeds_deadline": 0,
+      "priority_label": "Not_High",
+      "scheduled_start": "2025-04-11T07:30:00Z",
+      "deadline": "2025-04-11T12:30:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 14,
+    "fields": {
+      "material_used": 2.8,
+      "processing_time": 40.0,
+      "energy_consumption": 12.6,
+      "machine_availability": 85.0,
+      "machine_id": "M004",
+      "time_budget": 180.0,
+      "time_risk": -1.5,
+      "exceeds_deadline": 1,
+      "priority_label": "High",
+      "scheduled_start": "2025-04-11T10:00:00Z",
+      "deadline": "2025-04-11T13:00:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 15,
+    "fields": {
+      "material_used": 5.6,
+      "processing_time": 90.0,
+      "energy_consumption": 36.3,
+      "machine_availability": 90.0,
+      "machine_id": "M001",
+      "time_budget": 360.0,
+      "time_risk": 7.0,
+      "exceeds_deadline": 0,
+      "priority_label": "Not_High",
+      "scheduled_start": "2025-04-11T12:00:00Z",
+      "deadline": "2025-04-11T18:00:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 16,
+    "fields": {
+      "material_used": 3.2,
+      "processing_time": 35.0,
+      "energy_consumption": 15.0,
+      "machine_availability": 70.0,
+      "machine_id": "M003",
+      "time_budget": 150.0,
+      "time_risk": 2.0,
+      "exceeds_deadline": 0,
+      "priority_label": "Not_High",
+      "scheduled_start": "2025-04-11T13:30:00Z",
+      "deadline": "2025-04-11T16:00:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 17,
+    "fields": {
+      "material_used": 5.0,
+      "processing_time": 60.0,
+      "energy_consumption": 25.4,
+      "machine_availability": 80.0,
+      "machine_id": "M002",
+      "time_budget": 180.0,
+      "time_risk": -3.0,
+      "exceeds_deadline": 1,
+      "priority_label": "High",
+      "scheduled_start": "2025-04-11T14:00:00Z",
+      "deadline": "2025-04-11T17:00:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 18,
+    "fields": {
+      "material_used": 2.4,
+      "processing_time": 120.0,
+      "energy_consumption": 18.9,
+      "machine_availability": 55.0,
+      "machine_id": "M004",
+      "time_budget": 90.0,
+      "time_risk": 15.0,
+      "exceeds_deadline": 1,
+      "priority_label": "Not_High",
+      "scheduled_start": "2025-04-11T09:00:00Z",
+      "deadline": "2025-04-11T10:30:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 19,
+    "fields": {
+      "material_used": 3.7,
+      "processing_time": 110.0,
+      "energy_consumption": 22.1,
+      "machine_availability": 63.0,
+      "machine_id": "M002",
+      "time_budget": 100.0,
+      "time_risk": 10.0,
+      "exceeds_deadline": 1,
+      "priority_label": "Not_High",
+      "scheduled_start": "2025-04-11T11:00:00Z",
+      "deadline": "2025-04-11T12:40:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 20,
+    "fields": {
+      "material_used": 1.9,
+      "processing_time": 130.0,
+      "energy_consumption": 19.7,
+      "machine_availability": 60.0,
+      "machine_id": "M003",
+      "time_budget": 105.0,
+      "time_risk": 12.0,
+      "exceeds_deadline": 1,
+      "priority_label": "Not_High",
+      "scheduled_start": "2025-04-11T15:00:00Z",
+      "deadline": "2025-04-11T16:45:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 21,
+    "fields": {
+      "material_used": 4.8,
+      "processing_time": 38.0,
+      "energy_consumption": 14.5,
+      "machine_availability": 73.0,
+      "machine_id": "M001",
+      "time_budget": 60.0,
+      "time_risk": 22.0,
+      "exceeds_deadline": 0,
+      "priority_label": "High",
+      "scheduled_start": "2025-04-11T01:25:00Z",
+      "deadline": "2025-04-11T02:25:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.historicaltasks",
+    "pk": 22,
+    "fields": {
+      "material_used": 3.5,
+      "processing_time": 50.0,
+      "energy_consumption": 20.2,
+      "machine_availability": 65.0,
+      "machine_id": "M002",
+      "time_budget": 20.0,
+      "time_risk": -30.0,
+      "exceeds_deadline": 1,
+      "priority_label": "High",
+      "scheduled_start": "2025-04-11T07:28:00Z",
+      "deadline": "2025-04-11T07:48:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.unassignedtasks",
+    "pk": 16,
+    "fields": {
+      "operation_type": "Milling",
+      "material_used": 2.1,
+      "processing_time": 30.0,
+      "energy_consumption": 7.6,
+      "machine_availability": 48.0,
+      "machine_id": "M002",
+      "scheduled_start": "2025-04-11T15:00:00Z",
+      "deadline": "2025-04-11T17:00:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.unassignedtasks",
+    "pk": 17,
+    "fields": {
+      "operation_type": "Grinding",
+      "material_used": 5.5,
+      "processing_time": 78.0,
+      "energy_consumption": 35.5,
+      "machine_availability": 91.0,
+      "machine_id": "M003",
+      "scheduled_start": "2025-04-11T08:45:00Z",
+      "deadline": "2025-04-11T13:00:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.unassignedtasks",
+    "pk": 18,
+    "fields": {
+      "operation_type": "Drilling",
+      "material_used": 4.2,
+      "processing_time": 190.0,
+      "energy_consumption": 37.5,
+      "machine_availability": 67.0,
+      "machine_id": "M004",
+      "scheduled_start": "2025-04-11T06:00:00Z",
+      "deadline": "2025-04-11T08:30:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.unassignedtasks",
+    "pk": 19,
+    "fields": {
+      "operation_type": "Additive",
+      "material_used": 6.1,
+      "processing_time": 125.0,
+      "energy_consumption": 42.1,
+      "machine_availability": 79.0,
+      "machine_id": "M001",
+      "scheduled_start": "2025-04-11T10:00:00Z",
+      "deadline": "2025-04-11T12:00:00Z"
+    }
+  },
+  {
+    "model": "FinalProject.unassignedtasks",
+    "pk": 20,
+    "fields": {
+      "operation_type": "Additive",
+      "material_used": 3.6,
+      "processing_time": 105.0,
+      "energy_consumption": 18.9,
+      "machine_availability": 56.0,
+      "machine_id": "M002",
+      "scheduled_start": "2025-04-11T11:00:00Z",
+      "deadline": "2025-04-11T12:30:00Z"
+    }
+  }
+]
