@@ -13,14 +13,15 @@ from .models import UnassignedTasks, AssignedTasks, HistoricalTasks
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
-ML_MODEL_PATH='FinalProject/ml_models/priority_model.pkl'
-model=joblib.load(ML_MODEL_PATH)
+ML_MODEL_PATH='FinalProject/ml_models/priority_model.pkl'    # path to locate the model
+model=joblib.load(ML_MODEL_PATH)            #Load the model using joblib
 
 
 # Create your views here.
 def index(request):
     return render(request,'index.html')
 
+# The login functionality is from Django's built-in authentication system
 def login(request):
     if request.method == "GET":
         return render(request,'login.html')
@@ -63,6 +64,8 @@ def predict_view(request):
         'result': result
 
     })
+
+
 # def get_credential(request):
 #     answer = Credential.objects.all().values('username')
 #     print(answer)
@@ -129,13 +132,13 @@ def predict_unassigned(request,task_id):
 
 def assigned_list(request):
     if request.GET.get('sort') == 'priority':
-        tasks = AssignedTasks.objects.all().order_by('-priority_score')
+        tasks = AssignedTasks.objects.all().order_by('-priority_score')  # order by priority score
         sorted_flag = True
     else:
-        tasks = AssignedTasks.objects.all().order_by('id')  # 默认按创建顺序
+        tasks = AssignedTasks.objects.all().order_by('id')  # default order
         sorted_flag = False
 
-    return render(request, 'assigned_list.html', {
+    return render(request, 'Assigned_list.html', {
         'tasks': tasks,
         'sorted': sorted_flag
     })
@@ -146,7 +149,7 @@ def assigned_view(request, task_id):
         try:
             task = AssignedTasks.objects.get(id=task_id)
 
-            # 写入历史表
+            # clone the row in Historical table
             HistoricalTasks.objects.create(
                 material_used=task.material_used,
                 processing_time=task.processing_time,
@@ -161,12 +164,12 @@ def assigned_view(request, task_id):
                 priority_label=task.priority_label
             )
 
-            # 删除原任务
+            # Delete the original form when pushing finished
             task.delete()
 
             return JsonResponse({'success': True})
         except AssignedTasks.DoesNotExist:
-            return JsonResponse({'success': False, 'error': '任务不存在'}, status=404)
+            return JsonResponse({'success': False, 'error': 'Tasks not exist'}, status=404)
 
 def historical_list(request):
     tasks = HistoricalTasks.objects.all()

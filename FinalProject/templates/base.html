@@ -21,11 +21,11 @@
 </head>
 <body>
 
-  <!-- 顶部导航栏 -->
+{#  navigation bar#}
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
 
-      <!-- 品牌和切换按钮 -->
+
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
           <span class="sr-only">Switch Navigation</span>
@@ -36,7 +36,7 @@
         <a class="navbar-brand" href="{% url 'index' %}">Tasks Priority Prediction System</a>
       </div>
 
-      <!-- 导航链接 -->
+{#      navigation link#}
       <div class="collapse navbar-collapse" id="navbar-main">
         <ul class="nav navbar-nav">
           <li><a href="{% url 'unassigned_list' %}">Unassigned Tasks</a></li>
@@ -53,7 +53,7 @@
     </div>
   </nav>
 
-  <!-- 页面内容区域 -->
+
   <div class="container">
     {% block content %}
     {% endblock %}

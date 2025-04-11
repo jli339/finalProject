@@ -1,6 +1,7 @@
 from django import forms
 from .models import UnassignedTasks, AssignedTasks
 
+# The form is created using Django's built-in forms.Form class
 
 class PriorityForm(forms.Form):
     OPERATION_CHOICES = [

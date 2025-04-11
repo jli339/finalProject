@@ -34,8 +34,8 @@ class HistoricalTasks(models.Model):
     time_risk = models.FloatField(blank=True, null=True)
     exceeds_deadline = models.IntegerField(blank=True, null=True)
     priority_label = models.CharField(max_length=20, blank=True, null=True)
-    scheduled_start = models.DateTimeField(db_column='Scheduled_Start', blank=True, null=True)  # Field name made lowercase.
-    deadline = models.DateTimeField(db_column='Deadline', blank=True, null=True)  # Field name made lowercase.
+    scheduled_start = models.DateTimeField(db_column='Scheduled_Start', blank=True, null=True)
+    deadline = models.DateTimeField(db_column='Deadline', blank=True, null=True)
 
     class Meta:
         managed=True
