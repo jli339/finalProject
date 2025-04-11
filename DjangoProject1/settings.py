@@ -81,7 +81,10 @@ import dj_database_url
 # 判断是否在 Render 环境中运行（我们通过设置环境变量 RENDER 来控制）
 if os.getenv("RENDER") == "true":
     DATABASES = {
-        'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
+        'default': dj_database_url.config(
+            default=os.environ.get("DATABASE_URL"),
+            engine='django.db.backends.postgresql'
+        )
     }
 else:
     DATABASES = {
