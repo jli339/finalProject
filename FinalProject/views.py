@@ -47,11 +47,11 @@ def predict_view(request):
         form = PriorityForm(request.POST)
 
         if form.is_valid():
-            # 提取已验证的字段数据
+            # collect the data
             print(1)
             input_data = form.cleaned_data
             input_data=pd.DataFrame([input_data])
-            # 调用模型预测函数
+            # call the predict_priority function and then go to model prediction
             result = predict_priority(input_data)
 
     else:
