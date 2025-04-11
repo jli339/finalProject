@@ -75,16 +75,25 @@ WSGI_APPLICATION = 'DjangoProject1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'finalproject',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+import os
+import dj_database_url
+
+# 判断是否在 Render 环境中运行（我们通过设置环境变量 RENDER 来控制）
+if os.getenv("RENDER") == "true":
+    DATABASES = {
+        'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': '你的本地数据库名',
+            'USER': '你的本地用户名',
+            'PASSWORD': '你的本地密码',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation
