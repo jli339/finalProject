@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Home | Task Priority System{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+  <h1>🔧 Task Priority Prediction System</h1>
+  <p class="lead">An intelligent platform to help manufacturers schedule tasks more efficiently using AI-driven priority prediction.</p>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-info">
+      <div class="panel-heading"><strong> Key Features</strong></div>
+      <div class="panel-body">
+        <ul>
+          <li>Input and manage task information</li>
+          <li>Predict task priority using a trained machine learning model</li>
+          <li>Assign tasks to scheduling plans</li>
+          <li>Sort and filter tasks based on priority or custom criteria</li>
+          <li>Review assigned and historical tasks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading"><strong> Quick Navigation</strong></div>
+      <div class="panel-body">
+        <p><a class="btn btn-primary btn-block" href="{% url 'unassigned_list' %}"> Unassigned Tasks</a></p>
+        <p><a class="btn btn-info btn-block" href="{% url 'assigned_list' %}"> Assigned Tasks</a></p>
+        <p><a class="btn btn-default btn-block" href="{% url 'historical_list' %}"> Historical Tasks</a></p>
+        <p><a class="btn btn-success btn-block" href="{% url 'predict_priority' %}"> Priority Prediction</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

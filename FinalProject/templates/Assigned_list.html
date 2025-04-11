@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Assigned Tasks{% endblock %}
+{% block content %}
+    <h2>Assigned Tasks</h2>
+   <a href="?sort=priority" class="btn btn-info">Optimize Sequence</a>
+
+{% if sorted %}
+  <div class="alert alert-info">Sort by Priority</div>
+  <script>
+
+    if (window.location.search.includes("sort=priority")) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  </script>
+{% endif %}
+    <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+        Task has been pushed
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Material</th>
+                <th>Processing</th>
+                <th>Energy</th>
+                <th>Availability</th>
+                <th>Machine</th>
+                <th>Scheduled Start</th>
+                <th>Deadline</th>
+                <th>Priority</th>
+                <th>Priority_Score</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.material_used }}</td>
+                <td>{{ task.processing_time }}</td>
+                <td>{{ task.energy_consumption }}</td>
+                <td>{{ task.machine_availability }}</td>
+                <td>{{ task.machine_id }}</td>
+                <td>{{task.scheduled_start}}</td>
+                <td>{{task.deadline}}</td>
+                <th>{{ task.priority_label }}</th>
+                <th>{{ task.priority_score }}</th>
+                <td>
+                    <button class="btn btn-sm btn-primary push-btn" data-id="{{ task.id }}">Push</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        $('.push-btn').click(function () {
+    const taskId = $(this).data('id');
+
+    $.post('/assigned_view/' + taskId + '/', function (data) {
+        if (data.success) {
+
+            $('#success-alert').fadeIn();
+            setTimeout(function () {
+                location.reload();
+            }, 3000);
+        } else {
+            alert('Failed：' + data.error);
+        }
+    });
+});
+    </script>
+
+{% endblock %}

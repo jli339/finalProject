@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block title %}Task Prediction{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <h3><strong>Task Priority Prediction</strong></h3>
+      </div>
+      <div class="panel-body">
+        <form method="post" class="form-horizontal">
+          {% csrf_token %}
+
+          <div class="form-group">
+  <label class="control-label col-sm-4">Operation Type:</label>
+  <div class="col-sm-8">
+    <select name="Operation_Type" class="form-control" required>
+      <option value="">-- Select Operation --</option>
+      <option value="Grinding">Grinding</option>
+      <option value="Milling">Milling</option>
+      <option value="Drilling">Drilling</option>
+      <option value="Additive">Additive</option>
+        <option value="Lathe">Lathe</option>
+    </select>
+  </div>
+</div>
+
+
+          <div class="form-group">
+            <label class="control-label col-sm-4">Material Used:</label>
+            <div class="col-sm-8">
+              <input type="text" name="Material_Used" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4">Processing Time (Mins):</label>
+            <div class="col-sm-8">
+              <input type="number" name="Processing_Time" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4">Energy Consumption:</label>
+            <div class="col-sm-8">
+              <input type="number" name="Energy_Consumption" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4">Machine Availability (%):</label>
+            <div class="col-sm-8">
+              <input type="number" step="0.01" name="Machine_Availability" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+  <label class="control-label col-sm-4">Machine ID:</label>
+  <div class="col-sm-8">
+    <select name="Machine_ID" class="form-control" required>
+      <option value="">-- Select Machine --</option>
+      <option value="M01">M01</option>
+      <option value="M02">M02</option>
+      <option value="M03">M03</option>
+        <option value="M04">M04</option>
+        <option value="M05">M05</option>
+    </select>
+  </div>
+</div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4">Scheduled Start:</label>
+            <div class="col-sm-8">
+              <input type="datetime-local" name="Scheduled_Start" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4">Deadline:</label>
+            <div class="col-sm-8">
+              <input type="datetime-local" name="Deadline" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-success">Predict</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    {% if result %}
+    <div class="panel panel-info" style="margin-top: 20px;">
+      <div class="panel-heading text-center">
+        <strong>Prediction Result</strong>
+      </div>
+      <div class="panel-body">
+        <p><strong>Priority Label:</strong> {{ result.priority_label }}</p>
+        <p><strong>Priority Score:</strong> {{ result.priority_score }}</p>
+      </div>
+    </div>
+    {% endif %}
+
+
+{% endblock %}

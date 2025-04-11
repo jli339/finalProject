@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Task Priority Prediction System{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+  <style>
+    body {
+      padding-top: 70px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部导航栏 -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+
+      <!-- 品牌和切换按钮 -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+          <span class="sr-only">Switch Navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'index' %}">Tasks Priority Prediction System</a>
+      </div>
+
+      <!-- 导航链接 -->
+      <div class="collapse navbar-collapse" id="navbar-main">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'unassigned_list' %}">Unassigned Tasks</a></li>
+          <li><a href="{% url 'assigned_list' %}">Assigned Tasks</a></li>
+          <li><a href="{% url 'historical_list' %}">Historical Tasks</a></li>
+          <li><a href="{% url 'predict_priority' %}">Single Tasks Priority Prediction</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- 页面内容区域 -->
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+</body>
+</html>

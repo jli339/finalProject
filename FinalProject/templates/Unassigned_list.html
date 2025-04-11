@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Assigned Tasks{% endblock %}
+{% block content %}
+    <h2>Unassigned Tasks</h2>
+    <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+        Task pushed
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Material</th>
+                <th>Processing</th>
+                <th>Energy</th>
+                <th>Availability</th>
+                <th>Machine</th>
+                <th>Scheduled Start</th>
+                <th>Deadline</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.material_used }}</td>
+                <td>{{ task.processing_time }}</td>
+                <td>{{ task.energy_consumption }}</td>
+                <td>{{ task.machine_availability }}</td>
+                <td>{{ task.machine_id }}</td>
+                <td><input type="datetime-local" class="form-control scheduled-start"></td>
+                <td><input type="datetime-local" class="form-control deadline"></td>
+                <td>
+                    <button class="btn btn-sm btn-primary push-btn" data-id="{{ task.id }}">Push</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        $(document).on('click', '.push-btn', function () {
+            const taskId = $(this).data('id');
+            const row = $(this).closest('tr');
+            const scheduledStart = row.find('.scheduled-start').val();
+            const deadline = row.find('.deadline').val();
+
+            if (!scheduledStart || !deadline) {
+                alert("Scheduled_Start and Deadline Required");
+                return;
+            }
+
+            const formData = {
+                scheduled_start: scheduledStart,
+                deadline: deadline
+            };
+
+            $.post('/predict_unassigned/' + taskId + '/', formData)
+                .done(function (data) {
+
+            $('#predict-result').html(
+                '<div class="alert alert-info">Priority: <b>' + data.priority_label +
+                '</b><br>Score: ' + data.priority_score + '</div>'
+            );
+
+            // Success signal
+            $('#success-alert').fadeIn();
+
+            // Auto Refresh in 3 secs
+            setTimeout(function () {
+                location.reload();
+            }, 3000);
+        })
+        .fail(function (xhr) {
+            alert('Fail：' + xhr.status + ' - ' + xhr.statusText);
+        });
+        });
+    </script>
+{% endblock %}

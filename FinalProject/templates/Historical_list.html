@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Assigned Tasks{% endblock %}
+{% block content %}
+    <h2>Historical Tasks</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Material</th>
+                <th>Processing</th>
+                <th>Energy</th>
+                <th>Availability</th>
+                <th>Machine</th>
+                <th>Scheduled Start</th>
+                <th>Deadline</th>
+                <th>Priority</th>
+
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.material_used }}</td>
+                <td>{{ task.processing_time }}</td>
+                <td>{{ task.energy_consumption }}</td>
+                <td>{{ task.machine_availability }}</td>
+                <td>{{ task.machine_id }}</td>
+                <td>{{task.scheduled_start}}</td>
+                <td>{{task.deadline}}</td>
+                <th>{{ task.priority_label }}</th>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
