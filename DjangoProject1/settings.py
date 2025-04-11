@@ -90,11 +90,14 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': '你的本地数据库名',
-            'USER': '你的本地用户名',
-            'PASSWORD': '你的本地密码',
+            'NAME': 'finalproject',
+            'USER': 'root',
+            'PASSWORD': '',
             'HOST': '127.0.0.1',
             'PORT': '3306',
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+            }
         }
     }
 
