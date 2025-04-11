@@ -17,7 +17,7 @@ class AssignedTasks(models.Model):
     priority_score = models.FloatField(db_column='Priority_Score')  # Field name made lowercase.
 
     class Meta:
-
+        managed=True
         db_table = 'assigned_tasks'
 
 
@@ -149,7 +149,7 @@ class HistoricalTasks(models.Model):
     deadline = models.DateTimeField(db_column='Deadline', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-
+        managed=True
         db_table = 'historical_tasks'
 
 
@@ -164,5 +164,5 @@ class UnassignedTasks(models.Model):
     deadline = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-
+        managed=True
         db_table = 'unassigned_tasks'
