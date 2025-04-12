@@ -1,6 +1,7 @@
 from django.db import models
 
-
+# Django model representing the 'assigned_tasks' table in the database.
+# Each instance of this class corresponds to a row in the table.
 class AssignedTasks(models.Model):
     operation_type = models.CharField(max_length=50)
     material_used = models.FloatField(db_column='Material_Used', blank=True, null=True)  # Field name made lowercase.
@@ -16,6 +17,9 @@ class AssignedTasks(models.Model):
     deadline = models.DateTimeField(db_column='Deadline', blank=True, null=True)  # Field name made lowercase.
     priority_score = models.FloatField(db_column='Priority_Score')  # Field name made lowercase.
 
+    # Meta options for the Django model.
+    # managed=True: Django will manage the database table (create, alter, delete).
+    # db_table: Specifies the actual name of the database table to use.
     class Meta:
         managed=True
         db_table = 'assigned_tasks'

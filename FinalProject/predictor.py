@@ -8,20 +8,19 @@ model = joblib.load('FinalProject/ml_models/priority_model.pkl')
 # This function takes input and send to the model to calculate priority
 def predict_priority(user_input):
 
-    # userinput is a dict contains a row of data
-
+    # Column names are converted to lowercase to ensure consistency.
     user_input.columns = [c.lower() for c in user_input.columns]
 
+    # If a DataFrame is passed, only the first row is processed.
     if isinstance(user_input, pd.DataFrame):
         user_input = user_input.iloc[0]
 
-
-
+    #  Converts 'scheduled_start' and 'deadline' to datetime.
     start = pd.to_datetime(user_input['scheduled_start'])
     deadline = pd.to_datetime(user_input['deadline'])
     processing_time = float(user_input['processing_time'])
 
-    # calculate time features
+    # calculate time features(input features)
     time_budget = (deadline - start).total_seconds()/ 60
     time_risk = time_budget - processing_time
     exceeds_deadline = int(time_risk < 0)
@@ -55,7 +54,7 @@ def predict_priority(user_input):
 
     # Model prediction
     priority_label = model.predict(model_input)[0]
-    proba = model.predict_proba(model_input)[0]
+    proba = model.predict_proba(model_input)[0]       # predicted probability
     priority_score = proba[model.classes_.tolist().index('High')]
 
     #return the result

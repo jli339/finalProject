@@ -18,18 +18,26 @@ from django.contrib import admin
 from django.urls import path
 from FinalProject import views
 
-# Assigning url for each site
+# urls.py
+# This file defines the URL routing configuration for the Django project.
+# It maps URL patterns to views, determining how the application responds to different requests.
 
 urlpatterns = [
     path('', views.login, name='login'),
+
     path('admin/', admin.site.urls),
+
     path('login/',views.login,name='login'),
+
     path('index/',views.index, name='index'),
 
     path('predict/', views.predict_view, name='predict_priority'),
     # path('dbtest/',views.get_credential),
 
     path('unassigned/', views.unassigned_list, name='unassigned_list'),
+
+    path('add_unassigned_task/', views.add_unassigned_task, name='add_unassigned_task'),
+
     path('predict_unassigned/<int:task_id>/', views.predict_unassigned, name='predict_task'),
 
     path('assigned/',views.assigned_list, name='assigned_list'),
@@ -38,5 +46,8 @@ urlpatterns = [
 
     path('historical/',views.historical_list,name='historical_list'),
 
+    path('delete_task/<int:task_id>/', views.delete_unassigned_task, name='delete_task'),
+
+    path('update_task/<int:task_id>/', views.update_unassigned_task, name='update_task'),
 
 ]

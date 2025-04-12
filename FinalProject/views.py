@@ -40,6 +40,10 @@ def login(request):
         else:
             return render(request,'login.html',{"error":"unauthorized"})
 
+# View function to handle priority prediction requests.
+# If the request method is POST, it processes the submitted form data,
+# validates it, converts it to a DataFrame, and passes it to the prediction function.
+# The prediction result is then rendered to the template.
 def predict_view(request):
     result = None
 
@@ -47,18 +51,19 @@ def predict_view(request):
         form = PriorityForm(request.POST)
 
         if form.is_valid():
-            # collect the data
+            # Extract and clean the input data from the form
             print(1)
             input_data = form.cleaned_data
             input_data=pd.DataFrame([input_data])
-            # call the predict_priority function and then go to model prediction
+            # Call the predict_priority function to get prediction results
             result = predict_priority(input_data)
 
     else:
-        form = PriorityForm()
+        form = PriorityForm() # Initialize an empty form for GET requests
 
-    print("🧾 POST 数据：", request.POST)
-    print("📋 表单错误：", form.errors)
+    print("POST DATA：", request.POST)
+    print("fORMS ERROR", form.errors)
+    # Render the prediction result along with the form
     return render(request, 'predict.html', {
         'form': form,
         'result': result
@@ -75,6 +80,19 @@ def unassigned_list(request):
     tasks = UnassignedTasks.objects.all()
     form=UnassignedTasks()
     return render(request,'Unassigned_list.html',{'tasks':tasks,'form':form})
+
+def add_unassigned_task(request):
+    if request.method == 'POST':
+        UnassignedTasks.objects.create(
+            operation_type=request.POST.get('operation_type'),
+            material_used=request.POST.get('material_used'),
+            processing_time=request.POST.get('processing_time'),
+            energy_consumption=request.POST.get('energy_consumption'),
+            machine_availability=request.POST.get('machine_availability'),
+            machine_id=request.POST.get('machine_id'),
+        )
+    return redirect('unassigned_list')
+
 
 @csrf_exempt
 
@@ -176,4 +194,21 @@ def historical_list(request):
     form=HistoricalTasks()
     return render(request,'Historical_list.html',{'tasks':tasks,'form':form})
 
+def delete_unassigned_task(request, task_id):
+    task = get_object_or_404(UnassignedTasks, id=task_id)
+    task.delete()
+    return redirect('unassigned_list')
 
+# 编辑任务
+def update_unassigned_task(request, task_id):
+    task = get_object_or_404(UnassignedTasks, id=task_id)
+    if request.method == 'POST':
+        task.operation_type = request.POST.get('operation_type')
+        task.material_used = request.POST.get('material_used')
+        task.processing_time = request.POST.get('processing_time')
+        task.energy_consumption = request.POST.get('energy_consumption')
+        task.machine_availability = request.POST.get('machine_availability')
+        task.machine_id = request.POST.get('machine_id')
+        task.save()
+        return redirect('unassigned_list')
+    return render(request, 'update_task.html', {'task': task})
