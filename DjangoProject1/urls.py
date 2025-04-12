@@ -18,18 +18,21 @@ from django.contrib import admin
 from django.urls import path
 from FinalProject import views
 
+from django.contrib.auth import views as auth_views
 # urls.py
 # This file defines the URL routing configuration for the Django project.
 # It maps URL patterns to views, determining how the application responds to different requests.
 
 urlpatterns = [
-    path('', views.login, name='login'),
 
+    path('',views.index),
     path('admin/', admin.site.urls),
 
-    path('login/',views.login,name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', views.logout_view, name='logout'),
 
     path('index/',views.index, name='index'),
+
 
     path('predict/', views.predict_view, name='predict_priority'),
     # path('dbtest/',views.get_credential),

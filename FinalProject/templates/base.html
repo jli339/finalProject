@@ -61,7 +61,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
 
-          <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
+          {% if user.is_authenticated %}
+  <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+{% endif %}
         </ul>
       </div>
 

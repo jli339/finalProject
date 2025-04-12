@@ -35,4 +35,11 @@
     </div>
   </div>
 </div>
+
+    {% if not user.is_authenticated %}
+    <div class="text-center mt-5">
+        <a href="/login/" class="btn btn-primary btn-lg mx-2">Login</a>
+        <a href="/admin/" class="btn btn-secondary btn-lg mx-2">Administrator Login</a>
+    </div>
+{% endif %}
 {% endblock %}

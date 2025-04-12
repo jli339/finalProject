@@ -1,6 +1,6 @@
 import joblib
 import pandas as pd
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 # from FinalProject.models import Credential
@@ -12,6 +12,7 @@ from .predictor import predict_priority
 from .models import UnassignedTasks, AssignedTasks, HistoricalTasks
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 ML_MODEL_PATH='FinalProject/ml_models/priority_model.pkl'    # path to locate the model
 model=joblib.load(ML_MODEL_PATH)            #Load the model using joblib
@@ -21,29 +22,17 @@ model=joblib.load(ML_MODEL_PATH)            #Load the model using joblib
 def index(request):
     return render(request,'index.html')
 
-# The login functionality is from Django's built-in authentication system
-def login(request):
-    if request.method == "GET":
-        return render(request,'login.html')
-    else:
-        username = request.POST.get('usr')
-        password = request.POST.get('pwd')
-        print("usr:", username)
-        print("pwd:", password)
-        user=authenticate(request,username=username,password=password)
-        print("User object:", user)
-        print("User type:", type(user))
-        if user is not None:
-            print(user.last_login)
-            django_login(request,user)
-            return redirect('/index/')
-        else:
-            return render(request,'login.html',{"error":"unauthorized"})
 
 # View function to handle priority prediction requests.
 # If the request method is POST, it processes the submitted form data,
 # validates it, converts it to a DataFrame, and passes it to the prediction function.
 # The prediction result is then rendered to the template.
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+@login_required
 def predict_view(request):
     result = None
 
@@ -76,11 +65,15 @@ def predict_view(request):
 #     print(answer)
 #     return HttpResponse(answer)
 
+
+@login_required
 def unassigned_list(request):
     tasks = UnassignedTasks.objects.all()
     form=UnassignedTasks()
     return render(request,'Unassigned_list.html',{'tasks':tasks,'form':form})
 
+
+@login_required
 def add_unassigned_task(request):
     if request.method == 'POST':
         UnassignedTasks.objects.create(
@@ -94,6 +87,8 @@ def add_unassigned_task(request):
     return redirect('unassigned_list')
 
 
+
+@login_required
 @csrf_exempt
 
 def predict_unassigned(request,task_id):
@@ -148,6 +143,8 @@ def predict_unassigned(request,task_id):
         })
     return JsonResponse({'error': 'Invalid method'}, status=400)
 
+
+@login_required
 def assigned_list(request):
     if request.GET.get('sort') == 'priority':
         tasks = AssignedTasks.objects.all().order_by('-priority_score')  # order by priority score
@@ -161,6 +158,8 @@ def assigned_list(request):
         'sorted': sorted_flag
     })
 
+
+@login_required
 @csrf_exempt
 def assigned_view(request, task_id):
     if request.method == 'POST':
@@ -189,17 +188,22 @@ def assigned_view(request, task_id):
         except AssignedTasks.DoesNotExist:
             return JsonResponse({'success': False, 'error': 'Tasks not exist'}, status=404)
 
+
+@login_required
 def historical_list(request):
     tasks = HistoricalTasks.objects.all()
     form=HistoricalTasks()
     return render(request,'Historical_list.html',{'tasks':tasks,'form':form})
 
+
+@login_required
 def delete_unassigned_task(request, task_id):
     task = get_object_or_404(UnassignedTasks, id=task_id)
     task.delete()
     return redirect('unassigned_list')
 
-# 编辑任务
+
+@login_required
 def update_unassigned_task(request, task_id):
     task = get_object_or_404(UnassignedTasks, id=task_id)
     if request.method == 'POST':
